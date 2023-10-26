@@ -56,6 +56,10 @@ a {
   color: inherit;
 }
 
+.svg-figure {
+  filter: var(--svg-figure);
+}
+
 img {
   display: block;
   max-width: 100%;
