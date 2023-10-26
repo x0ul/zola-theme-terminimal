@@ -39,9 +39,17 @@
             {%- for item in menu_items %}
                 <li {%- if current_item and current_item == item %} class="active" {%- endif %}>
                     {%- if item.newtab -%}
+                        {%- if item.path -%}
+                        <a href="{{ item.url | replace(from="$BASE_URL", to=config.base_url) | safe }}" target="_blank" rel="noopener noreferrer">{{ load_data(path=item.path) | safe }}</a>
+                        {%- else -%}
                         <a href="{{ item.url | replace(from="$BASE_URL", to=config.base_url) | safe }}" target="_blank" rel="noopener noreferrer">{{ item.name | safe }}</a>
+                        {%- endif -%}
                     {%- else -%}
+                        {%- if item.path -%}
+                        <a href="{{ item.url | replace(from="$BASE_URL", to=config.base_url) | safe }}">{{ load_data(path=item.path) | safe }}</a>
+                        {%- else -%}
                         <a href="{{ item.url | replace(from="$BASE_URL", to=config.base_url) | safe }}">{{ item.name | safe }}</a>
+                        {%- endif -%}
                     {%- endif -%}
                 </li>
             {% endfor -%}
